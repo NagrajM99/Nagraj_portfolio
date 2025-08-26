@@ -1,9 +1,16 @@
 
-function sendMail(){
-    let parms = {
-        name: document.getElementById("name").value, 
-        email : document.getElementById("email").value,
-        subject: document.getElementById("subject").value,
-        message: document.getElementById("message").value,
+function SendMail(){
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let message = document.getElementById("message").value;
+    if (!name || !email || !message) {
+        alert("Please fill in all the fields: Name, Email, and Message.");
+        return;
     }
-    emailjs.send("service_rvvq7c4","template_pt4o1jb", parms).then(alert("Thanks for your Email"))
+    let parms = {
+        name: name,
+        email: email,
+        message: message,
+    }
+        emailjs.send("service_rvvq7c4","template_pt4o1jb", parms).then(() => alert("Thanks for your Email"));
+    }
