@@ -1,16 +1,34 @@
+function sendMail(){
+  // This function will be called by the button click
+  // If you have the compiled TypeScript available, you can use:
+  // const indexInstance = new index();
+  // indexInstance.sendMail();
+  
+  // For now, keeping the original EmailJS implementation
+  let parms = {
+    name : document.getElementById("name").value,
+    email : document.getElementById("email").value,
+    subject : document.getElementById("subject").value,
+    message : document.getElementById("message").value,
+    }
 
-function SendMail(){
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let message = document.getElementById("message").value;
-    if (!name || !email || !message) {
-        alert("Please fill in all the fields: Name, Email, and Message.");
-        return;
-    }
-    let parms = {
-        name: name,
-        email: email,
-        message: message,
-    }
-        emailjs.send("service_rvvq7c4","template_pt4o1jb", parms).then(() => alert("Thanks for your Email"));
-    }
+  // Validate that all fields are filled
+  if (!parms.name || !parms.email || !parms.subject || !parms.message) {
+    alert("Please fill in all required fields.");
+    return;
+  }
+    
+  emailjs.send("service_rvvq7c4","template_pt4o1jb", parms).then(() => {
+    alert("Email Sent!!");
+    console.log("Mail sent successfully!");
+    
+    // Clear the form after successful send
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("subject").value = "";
+    document.getElementById("message").value = "";
+  }).catch((error) => {
+    console.error("Email failed to send:", error);
+    alert("Failed to send email. Please try again.");
+  });
+}
