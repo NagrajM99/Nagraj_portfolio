@@ -1,4 +1,4 @@
-function sendMail(){
+function SendMail(){
   // This function will be called by the button click
   // If you have the compiled TypeScript available, you can use:
   // const indexInstance = new index();
