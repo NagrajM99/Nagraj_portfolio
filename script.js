@@ -4,5 +4,20 @@ function sendMail(){
         email : document.getElementById("email").value,
         message: document.getElementById("message").value,
     }
-    emailjs.send("service_rvvq7c4","template_pt4o1jb", parms).then(alert("Thanks for your Email"))
+    if (!parms.name || !parms.email || !parms.message) {
+      alert("Please fill in all required fields.");
+      return;
+    }    
+    emailjs.send("service_rvvq7c4","template_pt4o1jb", parms).then(() => {
+    alert("Email Sent!!");
+    console.log("Mail sent successfully!");
+    
+    // Clear the form after successful send
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("message").value = "";
+  }).catch((error) => {
+    console.error("Email failed to send:", error);
+    alert("Failed to send email. Please try again.");
+  });
 }
