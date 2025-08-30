@@ -8,12 +8,11 @@ function sendMail(){
   let parms = {
     name : document.getElementById("name").value,
     email : document.getElementById("email").value,
-    subject : document.getElementById("subject").value,
     message : document.getElementById("message").value,
   }
 
   // Validate that all fields are filled
-  if (!parms.name || !parms.email || !parms.subject || !parms.message) {
+  if (!parms.name || !parms.email || !parms.message) {
     alert("Please fill in all required fields.");
     return;
   }
@@ -25,7 +24,6 @@ function sendMail(){
     // Clear the form after successful send
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
-    document.getElementById("subject").value = "";
     document.getElementById("message").value = "";
   }).catch((error) => {
     console.error("Email failed to send:", error);
